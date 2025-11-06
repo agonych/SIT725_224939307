@@ -236,17 +236,11 @@ app.get('/', (req, res) => {
             'POST /calculate  (JSON: { <expression tree> })'
         ],
         example_expression: {
-            op: 'add',
-            args: [
-                5,
-                {
-                    op: 'multiply',
-                    args: [2, 3]
-                },
-                {
-                    op: 'power',
-                    args: [2, 3]
-                }
+            "op": "add",
+            "args": [
+                1,
+                { "op": "power", "args": [2, 3] },
+                { "op": "multiply", "args": [4, 5, 6] }
             ]
         }
     });
