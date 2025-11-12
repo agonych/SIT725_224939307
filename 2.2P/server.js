@@ -1,10 +1,14 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const SUPPORTED_OPS = new Set(['add', 'subtract', 'multiply', 'divide', 'power', 'root']);
 
 // Middleware to parse JSON
 app.use(express.json());
+
+// Serve static files from the "public" folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Helper to validate and parse GET query parameters
 function getNumbers(req, res) {
@@ -113,7 +117,7 @@ function evalExpr(node) {
 }
 
 // GET /add - add v1 and v2
-app.get('/add', (req, res) => {
+app.get('/api/add', (req, res) => {
     const numbers = getNumbers(req, res);
     if (!numbers) return;
 
@@ -127,7 +131,7 @@ app.get('/add', (req, res) => {
 });
 
 // GET /subtract - subtract v2 from v1
-app.get('/subtract', (req, res) => {
+app.get('/api/subtract', (req, res) => {
     const numbers = getNumbers(req, res);
     if (!numbers) return;
 
@@ -141,7 +145,7 @@ app.get('/subtract', (req, res) => {
 });
 
 // GET /multiply - multiply v1 and v2
-app.get('/multiply', (req, res) => {
+app.get('/api/multiply', (req, res) => {
     const numbers = getNumbers(req, res);
     if (!numbers) return;
 
@@ -155,7 +159,7 @@ app.get('/multiply', (req, res) => {
 });
 
 // GET /divide - divide v1 by v2
-app.get('/divide', (req, res) => {
+app.get('/api/divide', (req, res) => {
     const numbers = getNumbers(req, res);
     if (!numbers) return;
 
@@ -175,7 +179,7 @@ app.get('/divide', (req, res) => {
 });
 
 // GET /power - raise v1 to the power of v2
-app.get('/power', (req, res) => {
+app.get('/api/power', (req, res) => {
     const numbers = getNumbers(req, res);
     if (!numbers) return;
 
@@ -189,7 +193,7 @@ app.get('/power', (req, res) => {
 });
 
 // GET /root - extract the v2-th root of v1
-app.get('/root', (req, res) => {
+app.get('/api/root', (req, res) => {
     const numbers = getNumbers(req, res);
     if (!numbers) return;
 
@@ -210,7 +214,7 @@ app.get('/root', (req, res) => {
 
 // POST /calculate - evaluate expression tree from JSON body
 // Example body: { "op": "add", "args": [1, 2, {"op": "multiply", "args": [3, 4]}] }
-app.post('/calculate', (req, res) => {
+app.post('/api/calculate', (req, res) => {
     const expr = getExpr(req, res);
     if (!expr) return;
 
@@ -223,17 +227,17 @@ app.post('/calculate', (req, res) => {
 });
 
 // Root endpoint
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
     res.json({
         message: 'Math Operations API',
         endpoints: [
-            'GET /add?v1=<number>&v2=<number>',
-            'GET /subtract?v1=<number>&v2=<number>',
-            'GET /multiply?v1=<number>&v2=<number>',
-            'GET /divide?v1=<number>&v2=<number>',
-            'GET /power?v1=<number>&v2=<number>',
-            'GET /root?v1=<number>&v2=<degree>',
-            'POST /calculate  (JSON: { <expression tree> })'
+            'GET /api/add?v1=<number>&v2=<number>',
+            'GET /api/subtract?v1=<number>&v2=<number>',
+            'GET /api/multiply?v1=<number>&v2=<number>',
+            'GET /api/divide?v1=<number>&v2=<number>',
+            'GET /api/power?v1=<number>&v2=<number>',
+            'GET /api/root?v1=<number>&v2=<degree>',
+            'POST /api/calculate  (JSON: { <expression tree> })'
         ],
         example_expression: {
             "op": "add",
