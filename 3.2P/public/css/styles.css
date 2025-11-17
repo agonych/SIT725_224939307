@@ -1,0 +1,64 @@
+body {
+    background-color: #f3e1c8;
+}
+
+strong {
+    font-weight: 600;
+}
+
+.logo-icon {
+    height: 50px;
+    vertical-align: top;
+    margin-top: 5px;
+    filter: brightness(0) invert(1);
+}
+
+.coffee-hero {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url("/img/pexels-photo-374885.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+.coffee-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    /* multi-layer gradient overlay */
+    background:
+            radial-gradient(circle at 10% 20%, rgba(232, 19, 19, 0.72) 0, transparent 45%),
+            radial-gradient(circle at 90% 80%, rgba(33, 39, 177, 0.88) 0, transparent 55%),
+            linear-gradient(135deg,
+            rgba(38, 23, 12, 0.85),
+            rgba(120, 66, 18, 0.75),
+            rgba(191, 128, 64, 0.65)
+            );
+
+    mix-blend-mode: multiply;
+}
+
+.coffee-hero .hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.coffee-hero .header {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+}
+
+.coffee-hero .hero-subtitle {
+    margin-bottom: 2rem;
+    color: #f3e1c8;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}

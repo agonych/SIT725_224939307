@@ -1,23 +1,24 @@
 {
-  "name": "calculator-server",
+  "name": "cofee-app",
   "version": "1.0.0",
-  "description": "Simple Express server implementing mathematical operations",
+  "description": "Coffe Shop Menu Application with Express and Materialize",
   "author": "Andrej Kudriavcev",
   "license": "MIT",
   "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/agonych/SIT725_224939307.git",
-    "directory": "2.2P"
+    "directory": "3.2P"
   },
   "bugs": {
     "url": "https://github.com/agonych/SIT725_224939307/issues"
   },
-  "homepage": "https://github.com/agonych/SIT725_224939307/tree/main/2.2P#readme",
+  "homepage": "https://github.com/agonych/SIT725_224939307/tree/main/3.2P#readme",
   "keywords": [
     "express",
-    "math",
-    "calculator"
+    "materialize",
+    "coffee",
+    "menu"
   ],
   "scripts": {
     "start": "node server.js",
