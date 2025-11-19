@@ -16,6 +16,9 @@
     <!-- Import Font Awesome Font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
+    <!-- Import jQuery (required for Materialize) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <!-- Import Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -28,10 +31,9 @@
 <nav class="brown darken-3">
     <div class="nav-wrapper container">
         <a href="/" class="brand-logo">
-            <img src ="/img/logo.svg" alt="Kudriavcev Coffee Shop"
-                 title="Kudriavcev Coffee Shop" class="logo-icon" />
+            <img src ="/img/icon.svg" alt="Kudriavcev Coffee Shop" title="Kudriavcev Coffee Shop" class="logo-icon" />
         </a>
-        <ul class="right hide-on-med-and-down">
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="https://www.linkedin.com/in/andrejkudriavcev/">LinkedIn</a></li>
         </ul>
     </div>
@@ -39,11 +41,28 @@
 
 <!-- HERO BLOCK -->
 <div class="coffee-hero">
-    <div class="container center-align hero-content">
-        <h3 class="header white-text">Welcome to Kudriavcev Coffee Shop!</h3>
-        <p class="flow-text hero-subtitle">
-            For the love of coffee – discover our range of expertly crafted coffee beverages made from the finest beans.
-        </p>
+    <div class="container hero-content">
+        <div class="row valign-wrapper">
+            <!-- Left Column -->
+            <div class="col s12 m9 hero-left">
+                <div class="hero-logo-container">
+                    <div class="hero-logo-wrapper">
+                        <img src="/img/logo.svg" alt="Kudriavcev Coffee Shop" title="Kudriavcev Coffee Shop" class="hero-logo" />
+                    </div>
+                </div>
+                <p class="flow-text hero-subtitle">
+                    For the love of coffee – discover our range of expertly crafted coffee beverages made from the finest beans.
+                </p>
+            </div>
+            <!-- Right Column -->
+            <div class="col s12 m3 hero-right">
+                <div class="hero-images">
+                    <img src="/img/pexels-photo-1695052.jpeg" alt="Coffee" class="materialboxed hero-image" />
+                    <img src="/img/pexels-photo-324028.jpeg" alt="Coffee"  class="materialboxed hero-image" />
+                    <img src="/img/pexels-photo-302899.jpeg" alt="Coffee"  class="materialboxed hero-image" />
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -51,144 +70,91 @@
 <section id="menu" class="menu-section">
     <div class="container">
         <h4 class="center-align">Our Menu</h4>
-        <p class="center-align grey-text text-darken-1">
-            Browse our selection of freshly brewed coffees and find your perfect cup!
-        </p>
+        <p class="center-align grey-text text-darken-1">Browse our selection of freshly brewed coffees and find your perfect cup!</p>
 
-        <div class="row">
-
-            <!-- Card 1 -->
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="/img/cappuccino.png" alt="Cappuccino">
-                        <span class="card-title">Cappuccino</span>
-                    </div>
-                    <div class="card-content">
-                        <p style="margin-bottom: 0.5rem">Espresso with steamed milk and a thick layer of foam, finished with a light dusting of chocolate.</p>
-                        <p><strong>$4.80 · Medium to strong</strong></p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">More details</a>
+        <div id="menuCards" class="row">
+            <div class="col s12 center-align" id="menuLoading">
+                <div class="preloader-wrapper small active">
+                    <div class="spinner-layer spinner-brown-only">
+                        <div class="circle-clipper left"><div class="circle"></div></div>
+                        <div class="gap-patch"><div class="circle"></div></div>
+                        <div class="circle-clipper right"><div class="circle"></div></div>
                     </div>
                 </div>
+                <p style="margin-top: 1rem;">Brewing your menu...</p>
             </div>
-
-            <!-- Card 2 -->
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="/img/latte.png" alt="Latte">
-                        <span class="card-title">Latte</span>
-                    </div>
-                    <div class="card-content">
-                        <p style="margin-bottom: 0.5rem">A smooth shot of espresso with plenty of steamed milk and a thin layer of microfoam.</p>
-                        <p><strong>$4.80 · Mild</strong></p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">More details</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="/img/flat-white.png" alt="Flat White">
-                        <span class="card-title">Flat White</span>
-                    </div>
-                    <div class="card-content">
-                        <p style="margin-bottom: 0.5rem">A double shot of espresso topped with velvety steamed milk, no foam, creamy and balanced.</p>
-                        <p><strong>$4.50 · Medium</strong></p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">More details</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="/img/long-black.png" alt="Long Black">
-                        <span class="card-title">Long Black</span>
-                    </div>
-                    <div class="card-content">
-                        <p style="margin-bottom: 0.5rem">Hot water topped with a double shot of espresso, delivering a rich, full coffee hit.</p>
-                        <p><strong>$4.20 · Strong</strong></p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">More details</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="/img/mocha.png" alt="Mocha">
-                        <span class="card-title">Mocha</span>
-                    </div>
-                    <div class="card-content">
-                        <p style="margin-bottom: 0.5rem">Espresso blended with chocolate and steamed milk, a sweet choice for chocolate and caffeine lovers.</p>
-                        <p><strong>$5.20 · Medium</strong></p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">More details</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="col s12 m4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="/img/iced-latte.png" alt="Iced Latte">
-                        <span class="card-title">Iced Latte</span>
-                    </div>
-                    <div class="card-content">
-                        <p style="margin-bottom: 0.5rem">Fresh espresso poured over ice with cold milk, light and refreshing for warm days or late study sessions.</p>
-                        <p><strong>$5.50 · Light</strong></p>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">More details</a>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
+
+<!-- ORDER MODAL -->
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <h4 id="orderModalTitle" class="modal-title">Order Coffee</h4>
+        <p class="grey-text text-darken-1" id="orderModalSubtitle">Fill in your details to place the order.</p>
+        <form id="orderForm" class="col s12">
+            <input type="hidden" id="orderCoffeeId" name="coffeeId">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Your First Name..." id="orderCustomerFirstName" name="firstName" type="text" class="validate" required>
+                    <label for="orderCustomerFirstName">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Your Last Name..." id="orderCustomerLastName" name="lastName" type="text" class="validate" required>
+                    <label for="orderCustomerLastName">Last Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Your Email Address..." id="orderCustomerEmail" name="email" type="email" class="validate" required>
+                    <label for="orderCustomerEmail">Email</label>
+                </div>
+                <div class="input-field col s6">
+                    <input placeholder="Your Phone Number..." id="orderCustomerPhone" name="phone" type="tel" class="validate" required>
+                    <label for="orderCustomerPhone">Phone</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input placeholder="Street address..." id="orderCustomerAddress" name="address" type="text" class="validate" required>
+                    <label for="orderCustomerAddress">Street Address</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Suburb..." id="orderCustomerSuburb" name="suburb" type="text" class="validate" required>
+                    <label for="orderCustomerSuburb">Suburb</label>
+                </div>
+                <div class="input-field col s3">
+                    <input placeholder="Postcode..." id="orderCustomerPostcode" name="postcode" type="text" class="validate" inputmode="numeric" pattern="\d{4}" maxlength="4" required>
+                    <label for="orderCustomerPostcode">Postcode</label>
+                </div>
+                <div class="input-field col s3">
+                    <input placeholder="State..." id="orderCustomerState" name="state" type="text" class="validate" required>
+                    <label for="orderCustomerState">State</label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-close btn-flat">Cancel</button>
+        <button id="orderSubmitBtn" class="btn brown darken-2 waves-effect waves-light" type="submit" form="orderForm">Place Order</button>
+    </div>
+</div>
 
 <!-- FOOTER -->
 <footer id="contact" class="page-footer brown darken-3">
     <div class="container">
         <div class="row">
             <div class="col s12 m6">
-                <h5><img src ="/img/logo.svg" alt="Kudriavcev Coffee Shop"
-                         title="Kudriavcev Coffee Shop" class="logo-icon" /></h5>
-                <p class="grey-text text-lighten-4">
-                    Coffee Shop Is A Place Where Friends Meet, Conversations Flow, And Memories Are Brewed Over A Perfect Cup Of Coffee.
-                </p>
+                <h5><img src ="/img/logo.svg" alt="Kudriavcev Coffee Shop" title="Kudriavcev Coffee Shop" class="logo-icon" /></h5>
+                <p class="grey-text text-lighten-4">Coffee Shop is a Place Where Friends Meet, Conversations Flow, and Memories are Brewed Over a Perfect Cup of Coffee.</p>
             </div>
             <div class="col s12 m4 offset-m2">
-                <h5 class="white-text" style="margin-top: 32px; margin-bottom: 29px">
-                    Contact
-                </h5>
+                <h5 class="white-text" style="margin-top: 32px; margin-bottom: 29px">Contact</h5>
                 <ul>
-                    <li style="margin-bottom: 10px">
-                        <i class="fa-solid fa-location-dot"></i>
-                        123 Espresso Lane, Sydney, 2000
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-at"></i>
-                        <a class="grey-text text-lighten-3" href="mailto:andrej@kudriavcev.info">
-                            andrej@kudriavcev.info
-                        </a>
-                    </li>
+                    <li class="footer-menu-item"><i class="fa-solid fa-location-dot"></i> 123 Espresso Lane, Sydney, 2000</li>
+                    <li class="footer-menu-item"><i class="fa-solid fa-at"></i> <a class="grey-text text-lighten-3" href="mailto:andrej@kudriavcev.info">andrej@kudriavcev.info</a></li>
                 </ul>
             </div>
         </div>
@@ -196,9 +162,7 @@
     <div class="footer-copyright" style="border-top: 1px solid rgba(255, 255, 255, 0.2);">
         <div class="container">
             <div class="row">
-                <div class="col">
-                    © 2025, Andrej Kudriavcev
-                </div>
+                <div class="col">© 2025, Andrej Kudriavcev</div>
             </div>
         </div>
     </div>
@@ -206,5 +170,7 @@
 
 <!-- Materialize JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- Custom JS -->
+<script src="/js/scripts.js"></script>
 </body>
 </html>
