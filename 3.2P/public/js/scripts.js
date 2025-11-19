@@ -2,6 +2,23 @@ let menuItemsCache = [];
 let selectedCoffee = null;
 let orderModalInstance = null;
 
+/** Show a toast message using Materialize or fallback to alert **/
+function showToast(message, classes = '', duration = 4000) {
+    if (window.M && typeof M.toast === 'function') {
+        M.toast({ html: message, classes, displayLength: duration });
+    } else {
+        alert(message);
+    }
+}
+
+/** Update validation state of a form field **/
+function updateValidationState(selector, isValid) {
+    const $field = $(selector);
+    if (!$field.length) return;
+    $field.removeClass('valid invalid');
+    $field.addClass(isValid ? 'valid' : 'invalid');
+}
+
 /** Attach event handlers for ordering coffees **/
 function attachEventHandlers() {
     const menuContainer = $('#menuCards');
@@ -23,6 +40,7 @@ function attachEventHandlers() {
         $('#orderCoffeeId').val(selectedCoffee.id);
         $('#orderModalTitle').text(`Order ${selectedCoffee.name}`);
         $('#orderModalSubtitle').text(`Complete the form below to order your ${selectedCoffee.name}.`);
+        $('#orderForm .validate').removeClass('valid invalid');
         M.updateTextFields();
 
         if (orderModalInstance) {
@@ -39,32 +57,55 @@ function attachEventHandlers() {
 
         const formData = {
             coffeeId: $('#orderCoffeeId').val(),
-            coffeeName: selectedCoffee ? selectedCoffee.name : '',
-            firstName: $('#orderCustomerFirstName').val().trim(),
-            lastName: $('#orderCustomerLastName').val().trim(),
-            email: $('#orderCustomerEmail').val().trim(),
-            phone: $('#orderCustomerPhone').val().trim(),
-            address: $('#orderCustomerAddress').val().trim(),
-            suburb: $('#orderCustomerSuburb').val().trim(),
-            postcode: $('#orderCustomerPostcode').val().trim(),
-            state: $('#orderCustomerState').val().trim()
+            coffeeName: selectedCoffee ? selectedCoffee.name : ''
         };
 
-        const missingField = Object.entries(formData).find(([key, value]) => {
-            if (key === 'coffeeName') {
-                return false;
+        const fieldDefinitions = [
+            { key: 'firstName', selector: '#orderCustomerFirstName', label: 'first name' },
+            { key: 'lastName', selector: '#orderCustomerLastName', label: 'last name' },
+            { key: 'email', selector: '#orderCustomerEmail', label: 'email address' },
+            { key: 'phone', selector: '#orderCustomerPhone', label: 'phone number' },
+            { key: 'address', selector: '#orderCustomerAddress', label: 'street address' },
+            { key: 'suburb', selector: '#orderCustomerSuburb', label: 'suburb' },
+            { key: 'postcode', selector: '#orderCustomerPostcode', label: 'postcode' },
+            { key: 'state', selector: '#orderCustomerState', label: 'state' }
+        ];
+
+        let invalidField = null;
+
+        fieldDefinitions.forEach(field => {
+            const value = $(field.selector).val().trim();
+            formData[field.key] = value;
+            const isValid = value !== '';
+            updateValidationState(field.selector, isValid);
+            if (!isValid && !invalidField) {
+                invalidField = field;
             }
-            return value === '';
         });
 
-        if (missingField) {
-            M.toast({ html: 'Please complete all required fields.', classes: 'red darken-1' });
+        if (invalidField) {
+            showToast(`Please enter your ${invalidField.label}.`, 'red darken-1');
+            $(invalidField.selector).focus();
             return;
         }
 
-        if (!/^\d{4}$/.test(formData.postcode)) {
-            M.toast({ html: 'Postcode must be exactly 4 digits.', classes: 'red darken-1' });
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(formData.email)) {
+            updateValidationState('#orderCustomerEmail', false);
+            showToast('Please enter a valid email address.', 'red darken-1');
+            $('#orderCustomerEmail').focus();
             return;
+        } else {
+            updateValidationState('#orderCustomerEmail', true);
+        }
+
+        if (!/^\d{4}$/.test(formData.postcode)) {
+            updateValidationState('#orderCustomerPostcode', false);
+            showToast('Postcode must be exactly 4 digits.', 'red darken-1');
+            $('#orderCustomerPostcode').focus();
+            return;
+        } else {
+            updateValidationState('#orderCustomerPostcode', true);
         }
 
         fetch('/api/orders', {
@@ -81,8 +122,9 @@ function attachEventHandlers() {
                 return response.json();
             })
             .then(() => {
-                M.toast({ html: 'Order placed successfully!', classes: 'green darken-1' });
+                showToast('Order placed successfully!', 'green darken-1');
                 $('#orderForm')[0].reset();
+                $('#orderForm .validate').removeClass('valid invalid');
                 M.updateTextFields();
                 if (orderModalInstance) {
                     orderModalInstance.close();
@@ -90,7 +132,7 @@ function attachEventHandlers() {
             })
             .catch(error => {
                 console.error('Error submitting order:', error);
-                M.toast({ html: 'We could not place your order. Please try again.', classes: 'red darken-1' });
+                showToast('We could not place your order. Please try again.', 'red darken-1');
             });
     });
 }
