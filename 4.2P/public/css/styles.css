@@ -1,0 +1,210 @@
+body {
+    background-color: #f3e1c8;
+}
+
+strong {
+    font-weight: 600;
+}
+
+.brand-logo {
+    margin: 0 15px;
+    height: 60px;
+    display: block;
+}
+
+.logo-icon {
+    height: 50px;
+    vertical-align: top;
+    margin-top: 5px;
+    filter: brightness(0) invert(1);
+}
+
+.coffee-hero {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url("/img/pexels-photo-374885.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #fff;
+}
+
+.coffee-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    /* multi-layer gradient overlay */
+    background:
+            radial-gradient(circle at 10% 20%, rgba(232, 19, 19, 0.72) 0, transparent 45%),
+            radial-gradient(circle at 90% 80%, rgba(33, 39, 177, 0.88) 0, transparent 55%),
+            linear-gradient(135deg,
+            rgba(38, 23, 12, 0.85),
+            rgba(120, 66, 18, 0.75),
+            rgba(191, 128, 64, 0.65)
+            );
+
+    mix-blend-mode: multiply;
+}
+
+.coffee-hero .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 0;
+}
+
+.coffee-hero .hero-left {
+    padding-right: 2rem;
+}
+
+.coffee-hero .hero-logo-container {
+    margin: 1.5rem 0;
+    position: relative;
+    display: inline-block;
+}
+
+.coffee-hero .hero-logo-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.coffee-hero .hero-logo {
+    max-width: 100%;
+    height: 200px;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+    animation: logoFloat 3s ease-in-out infinite;
+    filter: brightness(0) invert(1);
+    display: block;
+}
+
+.coffee-hero .hero-logo:hover {
+    transform: scale(1.06) rotate(1.5deg);
+    filter: brightness(0) invert(1) drop-shadow(0 0 32px rgba(255, 255, 255, 0.7));
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.coffee-hero .hero-subtitle {
+    margin-bottom: 2rem;
+    color: #f3e1c8;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.coffee-hero .hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coffee-hero .hero-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.coffee-hero .hero-image {
+    width: 100%;
+    height: auto;
+    border: 3px solid white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+}
+
+.coffee-hero .hero-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.footer-menu-item {
+    margin-bottom: 0.5rem;
+}
+
+.footer-menu-item:last-child {
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 992px) {
+    .coffee-hero .valign-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .coffee-hero .valign-wrapper .hero-left,
+    .coffee-hero .valign-wrapper .hero-right {
+        flex: 0 0 100%;
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0;
+    }
+
+    .coffee-hero .hero-left {
+        padding-right: 0;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .coffee-hero .hero-logo {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 450px;
+    }
+    
+    .coffee-hero .hero-right {
+        width: 100%;
+        margin-top: 1rem;
+        justify-content: center;
+    }
+    
+    .coffee-hero .hero-images {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1.5rem;
+        width: 100%;
+    }
+    
+    .coffee-hero .hero-image {
+        max-width: 140px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .coffee-hero {
+        min-height: 520px;
+    }
+
+    .coffee-hero .hero-image {
+        max-width: 120px;
+        margin: 0 0.5rem;
+    }
+
+    .coffee-hero .hero-right {
+        margin-top: 1.5rem;
+        width: 100%;
+    }
+
+    .coffee-hero .hero-images {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
