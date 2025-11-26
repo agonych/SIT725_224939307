@@ -1,19 +1,19 @@
 {
   "name": "cofee-app",
   "version": "1.0.0",
-  "description": "Coffe Shop Menu Application with Express and Materialize",
+  "description": "Coffe Shop Menu Application with Express and MongoDB",
   "author": "Andrej Kudriavcev",
   "license": "MIT",
   "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/agonych/SIT725_224939307.git",
-    "directory": "3.2P"
+    "directory": "4.2P"
   },
   "bugs": {
     "url": "https://github.com/agonych/SIT725_224939307/issues"
   },
-  "homepage": "https://github.com/agonych/SIT725_224939307/tree/main/3.2P#readme",
+  "homepage": "https://github.com/agonych/SIT725_224939307/tree/main/4.2P#readme",
   "keywords": [
     "express",
     "materialize",
