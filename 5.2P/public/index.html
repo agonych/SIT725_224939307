@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Book Catalogue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            max-width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+            max-width: 600px;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        .error {
+            color: darkred;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Book Catalogue</h1>
+<table id="books-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Year</th>
+        <th>Summary</th>
+    </tr>
+    </thead>
+    <tbody id="books-tbody"></tbody>
+</table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tbody = document.getElementById('books-tbody');
+
+        function outputError(err) {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.colSpan = 6;
+            cell.textContent = err;
+            cell.className = 'error';
+            row.appendChild(cell);
+            tbody.appendChild(row);
+        }
+
+        function outputBook(book) {
+            const row = document.createElement('tr');
+
+            const idCell = document.createElement('td');
+            idCell.textContent = book.id ?? '';
+            row.appendChild(idCell);
+
+            const titleCell = document.createElement('td');
+            titleCell.textContent = book.title ?? '';
+            row.appendChild(titleCell);
+
+            const authorCell = document.createElement('td');
+            authorCell.textContent = book.author ?? '';
+            row.appendChild(authorCell);
+
+            const genreCell = document.createElement('td');
+            genreCell.textContent = book.genre ?? '';
+            row.appendChild(genreCell);
+
+            const yearCell = document.createElement('td');
+            yearCell.textContent = book.year ?? '';
+            row.appendChild(yearCell);
+
+            const summaryCell = document.createElement('td');
+            summaryCell.textContent = book.summary ?? '';
+            row.appendChild(summaryCell);
+
+            tbody.appendChild(row);
+        }
+
+        fetch('/api/books')
+            .then(async (response) => {
+                let data;
+
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    data = {
+                        message: 'Unable to read the response'
+                    }
+                }
+
+                return data;
+            })
+            .then(json => {
+                const books = json.data || [];
+                const message = json.message || 'No books found';
+                if (books.length === 0) {
+                    outputError(message);
+                    return;
+                }
+
+                books.forEach(book => {
+                    outputBook(book);
+                });
+            })
+            .catch(err => {
+                outputError(err);
+            });
+    });
+</script>
+</body>
+</html>

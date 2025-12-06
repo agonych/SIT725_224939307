@@ -1,0 +1,33 @@
+{
+  "name": "book-app",
+  "version": "1.0.0",
+  "description": "MVC Book Catalog application with Express and Vanilla JS",
+  "author": "Andrej Kudriavcev",
+  "license": "MIT",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agonych/SIT725_224939307.git",
+    "directory": "5.2P"
+  },
+  "bugs": {
+    "url": "https://github.com/agonych/SIT725_224939307/issues"
+  },
+  "homepage": "https://github.com/agonych/SIT725_224939307/tree/main/5.2P#readme",
+  "keywords": [
+    "express",
+    "MVC",
+    "book",
+    "catalog"
+  ],
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
