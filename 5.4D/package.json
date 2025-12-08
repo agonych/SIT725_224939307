@@ -1,19 +1,19 @@
 {
-  "name": "book-app-monogo",
+  "name": "book-app-monogo-safe",
   "version": "1.0.0",
-  "description": "MVC Book Catalog application with Express and MongoDB",
+  "description": "MVC Book Catalog application with safe-writes to MongoDB",
   "author": "Andrej Kudriavcev",
   "license": "MIT",
   "main": "server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/agonych/SIT725_224939307.git",
-    "directory": "5.3C"
+    "directory": "5.4D"
   },
   "bugs": {
     "url": "https://github.com/agonych/SIT725_224939307/issues"
   },
-  "homepage": "https://github.com/agonych/SIT725_224939307/tree/main/5.3C#readme",
+  "homepage": "https://github.com/agonych/SIT725_224939307/tree/main/5.4D#readme",
   "keywords": [
     "express",
     "MVC",
