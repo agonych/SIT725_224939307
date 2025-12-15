@@ -1,8 +1,10 @@
-const expect = require('chai').expect;
+const { assert, expect } = require('chai');
 const request = require('request');
 const { evalExpr } = require('../lib');
 
+// Tests to validate the Calculator API endpoints (expect style)
 describe("Calculator API", function() {
+
     const baseUrl = 'http://localhost:3000/api';
 
     it("returns status 200 to validate the API is running", function(done) {
@@ -41,46 +43,45 @@ describe("Calculator API", function() {
 
 });
 
-// Tests for the calculate functionality
-describe("Calculate Functionality", function() {
-    it("test successful evaluation of expression tree", function (done) {
+// Tests for the calculate functionality (assert style)
+describe("Calculate Functionality", function () {
+
+    it("test successful evaluation of expression tree", function () {
         const expr = {
-            "op": "add",
-            "args": [
+            op: "add",
+            args: [
                 1,
-                {"op": "power", "args": [2, 3]},
-                {"op": "multiply", "args": [4, 5, 6]}
+                { op: "power", args: [2, 3] },
+                { op: "multiply", args: [4, 5, 6] }
             ]
         };
+
         const result = evalExpr(expr);
-        expect(result).to.equal(129);
-        done();
+        assert.equal(result, 129);
     });
 
-    it("test handling unsupported operator in expression tree", function (done) {
+    it("test handling unsupported operator in expression tree", function () {
         const expr = {
-            "op": "modulus",
-            "args": [5, 2]
+            op: "modulus",
+            args: [5, 2]
         };
-        try {
-            evalExpr(expr);
-        } catch (e) {
-            expect(e.message).to.include('Unsupported "op". Supported:');
-            done();
-        }
+
+        assert.throws(
+            () => evalExpr(expr),
+            /Unsupported "op"\. Supported:/
+        );
     });
 
-    it ("test handling invalid node in expression tree", function (done) {
+    it("test handling invalid node in expression tree", function () {
         const expr = {
-            "op": "add",
-            "args": [1, "two", 3]
+            op: "add",
+            args: [1, "two", 3]
         };
-        try {
-            evalExpr(expr);
-        } catch (e) {
-            expect(e.message).to.include('Invalid node: must be a number or { op, args }.');
-            done();
-        }
+
+        assert.throws(
+            () => evalExpr(expr),
+            /Invalid node: must be a number or \{ op, args \}\./
+        );
     });
 
 });
