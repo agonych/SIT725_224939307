@@ -8,14 +8,20 @@ describe("Calculator API", function() {
     const baseUrl = 'http://localhost:3000/api';
 
     it("returns status 200 to validate the API is running", function(done) {
-        request.get(baseUrl + '/', null, function(error, response, _body) {
+        request.get(
+            baseUrl + '/',
+            null,
+            function(error, response, _body) {
             expect(response.statusCode).to.equal(200);
             done();
         });
     });
 
     it("test successful addition endpoint use", function(done) {
-        request.get(baseUrl + '/add', { v1: 5, v2: 3}, function(error, response, body) {
+        request.get(
+            baseUrl + '/add',
+            { qs: { v1: 5, v2: 3 } },
+            function(error, response, body) {
             expect(response.statusCode).to.equal(200);
             const result = JSON.parse(body).result;
             expect(result).to.equal(8);
@@ -24,7 +30,10 @@ describe("Calculator API", function() {
     });
 
     it("test handling missing parameters in addition endpoint", function(done) {
-        request.get(baseUrl + '/add', { v1: 5}, function(error, response, body) {
+        request.get(
+            baseUrl + '/add',
+            { qs: { v1: 5} },
+            function(error, response, body) {
             expect(response.statusCode).to.equal(400);
             const errorMsg = JSON.parse(body).error;
             expect(errorMsg).to.include('Invalid parameters. Both v1 and v2 must be valid numbers');
@@ -33,7 +42,10 @@ describe("Calculator API", function() {
     });
 
     it("test handling non-numeric parameters in addition endpoint", function(done) {
-        request.get(baseUrl + '/add', { v1: 'foo', v2: 3}, function(error, response, body) {
+        request.get(
+            baseUrl + '/add',
+            { qs: { v1: 'foo', v2: 3 } },
+            function(error, response, body) {
             expect(response.statusCode).to.equal(400);
             const errorMsg = JSON.parse(body).error;
             expect(errorMsg).to.include('Invalid parameters. Both v1 and v2 must be valid numbers');
