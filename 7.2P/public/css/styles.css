@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  background-color: #f5f5f5;
+  font-family: 'Roboto', sans-serif;
+}
+
+.app-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+.chat-window {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.chat-message {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.chat-message time {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.system-message {
+  font-style: italic;
+  color: #00796b;
+}
+
+#name-screen {
+  max-width: 480px;
+  margin: 0 auto 2rem;
+}
+
+#name-screen h5 {
+  margin-bottom: 2rem;
+}
+
+#name-form .form-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
+#name-form .form-row .input-field {
+  flex: 1;
+  margin: 0;
+}
+
+#name-form .form-row .input-field input {
+  margin: 0;
+}
+
+#chat-screen .card {
+  height: 100%;
+}
+
+#users.collection {
+  margin: 0;
+}
+
+#users.collection .collection-item {
+  padding: 0.25rem 1rem;
+}
+
+.users-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.users-header .card-title {
+  margin: 0;
+}
+
+.users-header button {
+  margin: 0;
+}
+
+#message-form .message-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
+#message-form .message-row .input-field {
+  flex: 1;
+  margin: 0;
+}
+
+#message-form .message-row .input-field input {
+  margin: 0;
+}
+
+#message-form .message-row button {
+  margin: 0;
+}
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Socket.IO Chat</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body class="grey lighten-4">
+<!-- Main Application Container -->
+<main class="app-container">
+  <!-- Login Screen -->
+  <section id="name-screen" class="card-panel white z-depth-1">
+    <h5 class="teal-text text-darken-3 mb-2 ">WELCOME TO THE CHAT</h5>
+    <form id="name-form">
+      <div class="form-row">
+        <div class="input-field">
+          <input id="name-input" type="text" />
+          <label for="name-input">Your name</label>
+        </div>
+        <button class="btn waves-effect waves-light teal" type="submit">Enter</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Chat Screen -->
+  <section id="chat-screen" class="row hide">
+    <!-- Message Column -->
+    <div class="col s12 m8">
+      <!-- Mesage Log -->
+      <ul id="messages" class="collection z-depth-1 chat-window"></ul>
+      <!-- Message Input Form -->
+      <form id="message-form" class="card-panel">
+        <div class="message-row">
+          <div class="input-field">
+            <input id="message-input" type="text" autocomplete="off" />
+            <label for="message-input">Type a message</label>
+          </div>
+          <button class="btn waves-effect waves-light teal" type="submit">Send</button>
+        </div>
+      </form>
+    </div>
+    <!-- Users Column -->
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-content">
+          <div class="users-header">
+            <span class="card-title">Members</span>
+            <button id="exit-button" class="btn waves-effect waves-light red" type="button">Exit</button>
+          </div>
+          <ul id="users" class="collection"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="/js/scripts.js"></script>
+</body>
+</html>
+
